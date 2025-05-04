@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- ربط مكتبة Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div id="countdown" class="countdown"></div>
+
+  <div class="card">
+    <img src="/Invitiation/IMG-20250502-WA0087.jpg" alt="Wedding Invitation" class="image" />
+    <br><br><br>
+    <div class="image-container">
+      <img src="/Invitiation/IMG-20250502-WA0082.jpg" class="image-second" />
+      <a href="https://maps.app.goo.gl/L8AocHT2PZVqkEgD8" class="map-button">
+        <img src="/Invitiation/IMG-20250502-WA0109.jpg" alt="Location Map" />
+      </a>
+    </div>
+    <br><br><br>
+    <img src="/Invitiation/IMG-20250502-WA0078.jpg" alt="Name" class="image-second" />
+  </div>
+
+  <audio id="myAudio" autoplay>
+    <source src="/Invitiation/VID-20250504-WA0022.mp3" type="audio/mpeg" />
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <div class="stars-container"></div>
+<div id="soundAlert" class="sound-alert">Click here to play</div>
+  <!-- زر الصوت الطائر -->
+  <button class="floating-button" id="soundButton">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <!-- عداد الوقت -->
+  <script>
+    const targetDate = new Date("2025-05-14").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "تمت المناسبة ❤️";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `Time left: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }, 1000);
+  </script>
+
+  <!-- نجوم متحركة -->
+  <script>
+    const container = document.querySelector('.stars-container');
+
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.innerText = '★';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      star.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      container.appendChild(star);
+      setTimeout(() => {
+        star.remove();
+      }, 5000);
+    }
+
+    setInterval(createStar, 300);
+  </script>
+
+  <!-- سكربت تشغيل الصوت بعد التفاعل -->
+  <script>
+    const audio = document.getElementById('myAudio');
+
+    function enableMedia() {
+      audio.play().catch(err => console.error('Audio Play Error:', err));
+      document.removeEventListener('click', enableMedia);
+      document.removeEventListener('touchstart', enableMedia);
+    }
+
+    document.addEventListener('click', enableMedia);
+    document.addEventListener('touchstart', enableMedia);
+  </script>
+
+  <!-- سكربت زر التحكم بالصوت -->
+  <script>
+    
+    const soundButton = document.getElementById('soundButton');
+     audio.play();
+    soundButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        soundButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+      } else {
+        audio.pause();
+        soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      }
+    });
+  </script>
+</body>
+</html>

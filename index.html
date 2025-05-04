@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kareem & Hind</title>
+
+    <!-- خطوط وأيقونات -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- ملف التنسيق الخارجي -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <style>
+      .popup {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: radial-gradient(circle, #1e1e2f 0%, #000000 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+      }
+
+      .popup.animate-in {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .popup.animate-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .popup-content {
+        text-align: center;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #ffffff22;
+        border-radius: 20px;
+        color: white;
+        font-family: "Cairo", sans-serif;
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .popup-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .popup-content p {
+        font-size: 1.3rem;
+        color: #ddd;
+      }
+
+      /* تأثير الاحتفال */
+      .celebration .confetti {
+        position: absolute;
+        font-size: 1.5rem;
+        animation: float 3s linear infinite;
+        user-select: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-200px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+    <!-- نافذة الترحيب -->
+    <!-- نافذة الترحيب -->
+    <div id="welcomePopup" class="popup animate-in">
+      <div class="popup-content">
+        <h2>أهلاً بك يا الغالي 🎉</h2>
+        <p>اضغط لفتح الدعوة</p>
+        <div class="celebration" id="celebrationEffects"></div>
+      </div>
+    </div>
+    <div class="card">
+      <img
+        src="/images/IMG-20250503-WA0020.jpg"
+        alt="Home Image"
+        class="image"
+      />
+      <img
+        src="/images/IMG-20250503-WA0012.jpg"
+        alt="Home Image"
+        class="image"
+      />
+
+      <!-- فيديو صامت يعمل تلقائيًا -->
+      <video
+        id="myVideo"
+        class="video"
+        muted
+        autoplay
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="/images/VID-20250503-WA0014.mp4" type="video/mp4" />
+        المتصفح لا يدعم تشغيل الفيديو.
+      </video>
+
+      <!-- زر الدخول -->
+      <a href="Home.html" class="button">
+        عرض تفاصيل الموعد والمكان  <span class="triangle"></span>
+      </a>
+    </div>
+
+    <!-- عنصر الصوت -->
+    <audio id="myAudio">
+      <source src="/images/VID-20250503-WA0014.mp3" type="audio/mpeg" />
+      متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+
+    <!-- خلفية النجوم -->
+    <div class="stars-container"></div>
+    <div class="stars-container"></div>
+
+    <div id="soundAlert" class="sound-alert">Click here to play</div>
+    <!-- زر الصوت الطائر -->
+    <button class="floating-button" id="soundButton">
+      <i class="fas fa-volume-up"></i>
+    </button>
+
+    <script>
+      const video = document.getElementById("myVideo");
+      const audio = document.getElementById("myAudio");
+      const popup = document.getElementById("welcomePopup");
+      const celebrationEffects = document.getElementById("celebrationEffects");
+
+      // إنشاء رمز احتفال 🎉 بشكل عشوائي
+      function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.textContent = "🎉";
+        confetti.style.left = Math.random() * 100 + "%";
+        confetti.style.top = "100%";
+        confetti.style.fontSize = Math.random() * 20 + 10 + "px";
+        confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+        celebrationEffects.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+      }
+
+      const confettiInterval = setInterval(createConfetti, 150);
+
+      popup.addEventListener("click", () => {
+        popup.classList.remove("animate-in");
+        popup.classList.add("animate-out");
+        clearInterval(confettiInterval);
+
+        setTimeout(() => {
+          popup.remove();
+        }, 800);
+
+        video.play().catch((err) => console.error("Video Error:", err));
+        audio.play().catch((err) => console.error("Audio Error:", err));
+      });
+    </script>
+  </body>
+</html>
