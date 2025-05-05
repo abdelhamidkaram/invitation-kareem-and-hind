@@ -126,7 +126,10 @@
         Tap To Start <i class="fa fa-play-circle" aria-hidden="true"></i>
       </a>
     </div>
-
+    <div id="scrollArrow" class="scroll-arrow">
+      <i class="fa fa-chevron-down"></i><br />
+      <i class="fa fa-chevron-down"></i>
+    </div>
     <!-- عنصر الصوت -->
     <audio id="myAudio">
       <source src="/images/VID-20250503-WA0014.mp3" type="audio/mpeg" />
@@ -138,6 +141,18 @@
     <div class="stars-container"></div>
 
     <script>
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const fullHeight = document.body.scrollHeight;
+
+        // Check if near bottom
+        if (scrollTop + windowHeight >= fullHeight - 10) {
+          scrollArrow.style.display = "none";
+        } else {
+          scrollArrow.style.display = "none";
+        }
+      });
       const video = document.getElementById("myVideo");
       const audio = document.getElementById("myAudio");
       const popup = document.getElementById("welcomePopup");
@@ -167,13 +182,18 @@
         setTimeout(() => {
           popup.remove();
         }, 800);
+        const scrollArrow = document.getElementById("scrollArrow");
 
+        scrollArrow.addEventListener("click", () => {
+          video.scrollIntoView({
+            behavior: "smooth",
+          });
+        });
         setTimeout(() => {
           //scroll to bottom
           // Scroll to the video smoothly
           video.scrollIntoView({
             behavior: "smooth",
-            
           });
           video.play().catch((err) => console.error("Video Error:", err));
           audio.play().catch((err) => console.error("Audio Error:", err));
