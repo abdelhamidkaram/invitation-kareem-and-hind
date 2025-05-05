@@ -21,20 +21,22 @@
   <body>
     <style>
       .popup {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: radial-gradient(circle, #1e1e2f 0%, #000000 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        cursor: pointer;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.6s ease;
+        .popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #f3f4f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
       }
 
       .popup.animate-in {
@@ -91,16 +93,20 @@
     </style>
     <!-- نافذة الترحيب -->
     <!-- نافذة الترحيب -->
+     
+
     <div id="welcomePopup" class="popup animate-in">
-      <div class="popup-content">
-        <h2>أهلاً بك يا الغالي 🎉</h2>
-        <p>اضغط لفتح الدعوة</p>
-        <div class="celebration" id="celebrationEffects"></div>
+       <div class="popup-content" style="max-width: 500px;">
+        <img
+        src="/images/modal.jpg"
+        alt="Home Image"
+        class="image"
+      />
       </div>
     </div>
     <div class="card">
       <img
-        src="/images/IMG-20250503-WA0020.jpg"
+        src="/images/1.jpg"
         alt="Home Image"
         class="image"
       />
@@ -126,7 +132,7 @@
 
       <!-- زر الدخول -->
       <a href="Home.html" class="button">
-        عرض تفاصيل الموعد والمكان  <span class="triangle"></span>
+        Tap To Start <i class="fa fa-play-circle" aria-hidden="true"></i>
       </a>
     </div>
 
@@ -139,12 +145,6 @@
     <!-- خلفية النجوم -->
     <div class="stars-container"></div>
     <div class="stars-container"></div>
-
-    <div id="soundAlert" class="sound-alert">Click here to play</div>
-    <!-- زر الصوت الطائر -->
-    <button class="floating-button" id="soundButton">
-      <i class="fas fa-volume-up"></i>
-    </button>
 
     <script>
       const video = document.getElementById("myVideo");

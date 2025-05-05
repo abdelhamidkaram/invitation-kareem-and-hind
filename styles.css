@@ -90,7 +90,7 @@ body {
   color: white;
   background-color: #777777;
   border: none;
-  border-radius: 12px;
+  border-radius: 100px;
   text-decoration: none;
   cursor: pointer;
   z-index: 1;
@@ -166,9 +166,14 @@ body {
 
 @media (max-width: 600px) {
   .button {
-    width: auto;
-    padding: 4px 8px;
-    font-size: 1em;
+    width: 47%;
+        padding: 4px 8px;
+        font-size: 1em;
+        position: fixed;
+        bottom: 25px;
+        left: 0;
+        right: 22%;
+        margin: 16px;
   }
 
   .card h1 {
@@ -365,7 +370,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: radial-gradient(circle, #1e1e2f 0%, #000000 100%);
+  background: #f3f4f1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -387,16 +392,8 @@ body {
 }
 
 .popup-content {
-  text-align: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid #ffffff33;
-  border-radius: 20px;
-  color: white;
-  font-family: 'Cairo', sans-serif;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-  position: relative;
   overflow: hidden;
+  max-width: 500px;
 }
 
 .popup-content h2 {
